@@ -43,7 +43,7 @@ public class SeleniumTest {
         LOG.info("Клик по кнопке \"Click Me Too\"");
         clickMeTooButton.click();
 
-        LOG.info("Проверка на наличие ссылки для возврата в меню");
+        LOG.info("Проверка на наличие ссылки для возврата в меню, возврат в меню");
         assertLink();
     }
 
