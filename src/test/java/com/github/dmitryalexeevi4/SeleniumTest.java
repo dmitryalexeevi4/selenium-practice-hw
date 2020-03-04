@@ -44,11 +44,7 @@ public class SeleniumTest {
         clickMeTooButton.click();
 
         LOG.info("Проверка на наличие ссылки для возврата в меню");
-        WebElement expectedLink = webDriver.findElement(By.xpath("//label//a"));
-        Assert.assertTrue(expectedLink.getText().contentEquals("Great! Return to menu"));
-
-        LOG.info("Клик по ссылке");
-        expectedLink.click();
+        assertLink();
     }
 
     @Test(priority = 2)
@@ -67,8 +63,7 @@ public class SeleniumTest {
         clickButton("go");
 
         LOG.info("Проверка результата на соответствие со значением чекбокса");
-        WebElement checkboxResult = findElementById("result");
-        Assert.assertTrue(checkboxResult.getText().contains(getValueById("one")));
+        assertResult("result", "one");
 
         LOG.info("Клик на первую радиокнопку");
         clickButton("radio_one");
@@ -77,15 +72,10 @@ public class SeleniumTest {
         clickButton("radio_go");
 
         LOG.info("Проверка результата на соответствие со значением радиокнопки");
-        WebElement radioResult = findElementById("radio_result");
-        Assert.assertTrue(radioResult.getText().contains(getValueById("radio_one")));
+        assertResult("radio_result", "radio_one");
 
-        LOG.info("Проверка на наличие ссылки для возврата в меню");
-        WebElement expectedLinkAfterResults = webDriver.findElement(By.xpath("//label//a"));
-        Assert.assertTrue(expectedLinkAfterResults.getText().contentEquals("Great! Return to menu"));
-
-        LOG.info("Клик по ссылке");
-        expectedLinkAfterResults.click();
+        LOG.info("Проверка на наличие ссылки для возврата в меню, возврат в меню");
+        assertLink();
     }
 
     @AfterClass
@@ -102,7 +92,14 @@ public class SeleniumTest {
         webDriver.findElement(By.id(buttonId)).click();
     }
 
-    public String getValueById(String buttonId) {
-        return webDriver.findElement(By.id(buttonId)).getAttribute("value");
+    public void assertResult(String resultButtonId, String buttonId) {
+        WebElement result = findElementById(resultButtonId);
+        Assert.assertTrue(result.getText().contains(webDriver.findElement(By.id(buttonId)).getAttribute("value")));
+    }
+
+    public void assertLink() {
+        WebElement expectedLinkAfterResults = webDriver.findElement(By.xpath("//label//a"));
+        Assert.assertTrue(expectedLinkAfterResults.getText().contentEquals("Great! Return to menu"));
+        expectedLinkAfterResults.click();
     }
 }
