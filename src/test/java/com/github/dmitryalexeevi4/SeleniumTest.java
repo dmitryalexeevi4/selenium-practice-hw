@@ -29,12 +29,10 @@ public class SeleniumTest {
         webDriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 
         LOG.info("Клик на страницу \"Button\"");
-        WebElement button = webDriver.findElement(By.id("button"));
-        button.click();
+        clickButton("button");
 
         LOG.info("Клик по кнопке \"Click Me\"");
-        WebElement clickMeButton = webDriver.findElement(By.id("first"));
-        clickMeButton.click();
+        clickButton("first");
 
         LOG.info("Проверка результата на наличие строки \"Excellent\" и кнопки \"Click Me Too\"");
         WebElement expectedResult = webDriver.findElement(By.xpath("//label[text()[contains(.,'Excellent')]]"));
@@ -60,32 +58,27 @@ public class SeleniumTest {
         webDriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 
         LOG.info("Клик на страницу \"Checkboxes and Radio\"");
-        WebElement checkboxAndRadio = webDriver.findElement(By.id("checkbox"));
-        checkboxAndRadio.click();
+        clickButton("checkbox");
 
         LOG.info("Клик на первый чекбокс");
-        WebElement checkbox = webDriver.findElement(By.id("one"));
-        checkbox.click();
+        clickButton("one");
 
         LOG.info("Клик по кнопке результата");
-        WebElement getCheckboxResultsButton = webDriver.findElement(By.id("go"));
-        getCheckboxResultsButton.click();
+        clickButton("go");
 
         LOG.info("Проверка результата на соответствие со значением чекбокса");
-        WebElement checkboxResult = webDriver.findElement(By.id("result"));
-        Assert.assertTrue(checkboxResult.getText().contains(checkbox.getAttribute("value")));
+        WebElement checkboxResult = findElementById("result");
+        Assert.assertTrue(checkboxResult.getText().contains(getValueById("one")));
 
         LOG.info("Клик на первую радиокнопку");
-        WebElement radioButton = webDriver.findElement(By.id("radio_one"));
-        radioButton.click();
+        clickButton("radio_one");
 
         LOG.info("Клик по кнопке результата");
-        WebElement getRadioResultsButton = webDriver.findElement(By.id("radio_go"));
-        getRadioResultsButton.click();
+        clickButton("radio_go");
 
         LOG.info("Проверка результата на соответствие со значением радиокнопки");
-        WebElement radioResult = webDriver.findElement(By.id("radio_result"));
-        Assert.assertTrue(radioResult.getText().contains(radioButton.getAttribute("value")));
+        WebElement radioResult = findElementById("radio_result");
+        Assert.assertTrue(radioResult.getText().contains(getValueById("radio_one")));
 
         LOG.info("Проверка на наличие ссылки для возврата в меню");
         WebElement expectedLinkAfterResults = webDriver.findElement(By.xpath("//label//a"));
@@ -99,5 +92,17 @@ public class SeleniumTest {
     public void webDriverQuit() {
         LOG.info("Закрытие ChromeDriver");
         webDriver.quit();
+    }
+
+    public WebElement findElementById(String buttonId) {
+        return webDriver.findElement(By.id(buttonId));
+    }
+
+    public void clickButton(String buttonId) {
+        webDriver.findElement(By.id(buttonId)).click();
+    }
+
+    public String getValueById(String buttonId) {
+        return webDriver.findElement(By.id(buttonId)).getAttribute("value");
     }
 }
