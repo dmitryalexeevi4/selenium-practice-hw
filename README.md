@@ -1,1 +1,1 @@
-Домашнее задание "Selenium WebDriver Practice"
+Домашние задания по "Selenium WebDriver Practice"

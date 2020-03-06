@@ -22,7 +22,7 @@ public class SeleniumTest {
         webDriver = new ChromeDriver();
     }
 
-    @Test(priority = 1)
+    @Test(groups = "first_hw")
     public void buttonPageTest() {
         LOG.info("Выполнение теста страницы Button...");
         webDriver.get("https://savkk.github.io/selenium-practice/");
@@ -47,7 +47,7 @@ public class SeleniumTest {
         assertLink();
     }
 
-    @Test(priority = 2)
+    @Test(groups = "first_hw")
     public void checkboxPageTest() {
         LOG.info("Выполнение теста страницы Checkboxes and Radio...");
         webDriver.get("https://savkk.github.io/selenium-practice/");
