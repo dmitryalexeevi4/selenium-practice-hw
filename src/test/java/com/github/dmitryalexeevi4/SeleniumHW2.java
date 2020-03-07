@@ -7,8 +7,7 @@ import org.testng.annotations.*;
 
 import java.util.concurrent.TimeUnit;
 
-import static com.github.dmitryalexeevi4.TestUtils.LOG;
-import static com.github.dmitryalexeevi4.TestUtils.webDriver;
+import static com.github.dmitryalexeevi4.TestUtils.*;
 
 public class SeleniumHW2 {
 
@@ -24,12 +23,12 @@ public class SeleniumHW2 {
         LOG.info("Выполнение теста страницы Select...");
         webDriver.get("https://savkk.github.io/selenium-practice/");
         webDriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-        TestUtils.clickButton("select");
+        clickButton("select");
         TestUtils.chooseSelectOption("hero");
         TestUtils.chooseSelectMultipleOptions("languages");
-        TestUtils.clickButton("go");
-        TestUtils.assertSelectedOptionsResult("languages");
-        TestUtils.assertLink();
+        clickButton("go");
+        assertSelectedOptionsResult("languages");
+        assertLink();
     }
 
     @Test()
@@ -37,10 +36,10 @@ public class SeleniumHW2 {
         LOG.info("Выполнение теста страницы Form...");
         webDriver.get("https://savkk.github.io/selenium-practice/");
         webDriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-        TestUtils.clickButton("form");
-        TestUtils.fillingReqTextFields();
-        TestUtils.clickSubmitButton();
-        TestUtils.assertLink();
+        clickButton("form");
+        fillingReqTextFields();
+        clickSubmitButton();
+        assertLink();
     }
 
     @Test()
@@ -48,7 +47,7 @@ public class SeleniumHW2 {
         LOG.info("Выполнение теста страницы IFrame...");
         webDriver.get("https://savkk.github.io/selenium-practice/");
         webDriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-        TestUtils.clickButton("iframe");
+        clickButton("iframe");
         webDriver.switchTo().frame(0);
         WebElement labelText = webDriver.findElement(By.xpath("//label[@id = 'code']"));
         String text = labelText.getText();
@@ -56,8 +55,8 @@ public class SeleniumHW2 {
         webDriver.switchTo().parentFrame();
         WebElement textField = webDriver.findElement(By.xpath("//input[@name = 'code']"));
         textField.sendKeys(code);
-        TestUtils.clickVerifyButton();
-        TestUtils.assertLink();
+        clickVerifyButton();
+        assertLink();
     }
 
     @AfterClass

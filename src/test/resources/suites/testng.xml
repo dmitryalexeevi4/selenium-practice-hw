@@ -7,8 +7,8 @@
             </run>
         </groups>
         <classes>
-            <class name="com.github.dmitryalexeevi4.SeleniumHW1"/>
-<!--            <class name="com.github.dmitryalexeevi4.SeleniumHW2"/>-->
+<!--            <class name="com.github.dmitryalexeevi4.SeleniumHW1"/>-->
+            <class name="com.github.dmitryalexeevi4.SeleniumHW2"/>
 <!--            <class name="com.github.dmitryalexeevi4.SeleniumHW3"/>-->
         </classes>
     </test>
