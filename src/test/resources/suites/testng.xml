@@ -2,13 +2,13 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name="TestNG">
     <test name="TestNG сценарии">
-        <groups>
+        <!--<groups>
             <run>
                 <include name="first_hw"/>
             </run>
-        </groups>
+        </groups>-->
         <classes>
-            <class name="com.github.dmitryalexeevi4.SeleniumTest"/>
+            <class name="com.github.dmitryalexeevi4.SeleniumHW1"/>
         </classes>
     </test>
 </suite>
