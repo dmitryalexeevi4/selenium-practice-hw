@@ -8,8 +8,7 @@ import org.testng.annotations.*;
 
 import java.util.concurrent.TimeUnit;
 
-import static com.github.dmitryalexeevi4.TestUtils.LOG;
-import static com.github.dmitryalexeevi4.TestUtils.webDriver;
+import static com.github.dmitryalexeevi4.TestUtils.*;
 
 public class SeleniumHW1 {
 
@@ -25,14 +24,14 @@ public class SeleniumHW1 {
         LOG.info("Выполнение теста страницы Button...");
         webDriver.get("https://savkk.github.io/selenium-practice/");
         webDriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-        TestUtils.clickButton("button");
-        TestUtils.clickButton("first");
+        clickButton("button");
+        clickButton("first");
         WebElement expectedResult = webDriver.findElement(By.xpath("//label[text()[contains(.,'Excellent')]]"));
         Assert.assertTrue(expectedResult.isDisplayed());
         WebElement clickMeTooButton = webDriver.findElement(By.className("button-primary"));
         Assert.assertTrue(clickMeTooButton.isDisplayed());
         clickMeTooButton.click();
-        TestUtils.assertLink();
+        assertLink();
     }
 
     @Test()
@@ -40,14 +39,14 @@ public class SeleniumHW1 {
         LOG.info("Выполнение теста страницы Checkboxes and Radio...");
         webDriver.get("https://savkk.github.io/selenium-practice/");
         webDriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-        TestUtils.clickButton("checkbox");
-        TestUtils.clickButton("one");
-        TestUtils.clickButton("go");
-        TestUtils.assertResult("result", "one");
-        TestUtils.clickButton("radio_one");
-        TestUtils.clickButton("radio_go");
-        TestUtils.assertResult("radio_result", "radio_one");
-        TestUtils.assertLink();
+        clickButton("checkbox");
+        clickButton("one");
+        clickButton("go");
+        assertResult("result", "one");
+        clickButton("radio_one");
+        clickButton("radio_go");
+        assertResult("radio_result", "radio_one");
+        assertLink();
     }
 
     @AfterClass

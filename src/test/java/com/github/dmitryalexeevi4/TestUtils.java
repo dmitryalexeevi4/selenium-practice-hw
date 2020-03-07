@@ -5,7 +5,6 @@ import org.openqa.selenium.support.ui.Select;
 import org.slf4j.*;
 import org.testng.Assert;
 
-
 import java.util.List;
 
 class TestUtils {
@@ -28,6 +27,14 @@ class TestUtils {
         webDriver.findElement(By.xpath("//input[@value = 'Verify']")).click();
     }
 
+    static void clickDeleteButton() {
+        webDriver.findElement(By.xpath("//input[@value = 'Delete']")).click();
+    }
+
+    static void clickAddButton() {
+        webDriver.findElement(By.xpath("//input[@value = 'Add']")).click();
+    }
+
     static void assertResult(String resultButtonId, String buttonId) {
         WebElement result = findElementById(resultButtonId);
         Assert.assertTrue(result.getText().contains(webDriver.findElement(By.id(buttonId)).getAttribute("value")));
@@ -37,6 +44,15 @@ class TestUtils {
         WebElement expectedLinkAfterResults = webDriver.findElement(By.xpath("//label//a"));
         Assert.assertTrue(expectedLinkAfterResults.getText().contentEquals("Great! Return to menu"));
         expectedLinkAfterResults.click();
+    }
+
+    static void assertTextAndLink() {
+        WebElement expectedText = webDriver.findElement(By.xpath("//label[.='Great!']"));
+        Assert.assertTrue(expectedText.isDisplayed());
+
+        WebElement expectedLink = webDriver.findElement(By.className("return"));
+        Assert.assertTrue(expectedLink.isDisplayed());
+        expectedLink.click();
     }
 
     static void chooseSelectOption(String selectName) {
@@ -53,6 +69,13 @@ class TestUtils {
         }
     }
 
+    static void chooseMultipleCustomers() {
+        List<WebElement> checkboxes = webDriver.findElements(By.xpath("//table[@id = 'customers']//tr//td//input[@type = 'checkbox']"));
+        for (WebElement checkbox : checkboxes) {
+            checkbox.click();
+        }
+    }
+
     static void assertSelectedOptionsResult(String selectName) {
         WebElement selectElement = webDriver.findElement(By.name(selectName));
         Select select = new Select(selectElement);
@@ -60,6 +83,13 @@ class TestUtils {
         String result = selectedOptions.get(0).getText() + ", " + selectedOptions.get(1).getText() + ", " + selectedOptions.get(2).getText();
         WebElement expectedResult = webDriver.findElement(By.xpath("//label[@name ='result'][text()[contains(., ', ')]]"));
         Assert.assertEquals(result, expectedResult.getText());
+    }
+
+    static void fillingTextFields() {
+        List<WebElement> textFields = webDriver.findElements(By.xpath("//form//input[@type='text']"));
+        for (WebElement textField : textFields) {
+            textField.sendKeys("test");
+        }
     }
 
     static void fillingReqTextFields() {
