@@ -6,7 +6,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 import static com.github.dmitryalexeevi4.TestUtils.*;
@@ -95,15 +95,11 @@ public class SeleniumHW4 {
         clickAddButton();
         assertLink();
 
-        LOG.info("Список cookies: ");
-        Set<Cookie> cookies = webDriver.manage().getCookies();
-        for (Cookie cookie : cookies) {
-            LOG.info(cookie.getName());
-        }
+        List<String> expectedCookies = Arrays.asList("button", "alerts", "checkboxes", "select", "form", "iframe", "table");
 
         LOG.info("Проверка cookies на значение \"done\"...");
-        for (Cookie cookie : cookies) {
-            Assert.assertEquals(cookie.getValue(), "done");
+        for (int i = 0; i < expectedCookies.size(); i++) {
+            Assert.assertEquals(webDriver.manage().getCookieNamed(expectedCookies.get(i)).getValue(), "done");
         }
         LOG.info("Успешно");
     }
