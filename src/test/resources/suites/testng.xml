@@ -9,7 +9,9 @@
         <classes>
 <!--            <class name="com.github.dmitryalexeevi4.SeleniumHW1"/>-->
 <!--            <class name="com.github.dmitryalexeevi4.SeleniumHW2"/>-->
-            <class name="com.github.dmitryalexeevi4.SeleniumHW3"/>
+<!--            <class name="com.github.dmitryalexeevi4.SeleniumHW3"/>-->
+            <class name="com.github.dmitryalexeevi4.SeleniumHW4"/>
+
         </classes>
     </test>
 </suite>
